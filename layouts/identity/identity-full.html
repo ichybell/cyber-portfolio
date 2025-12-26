@@ -96,11 +96,11 @@
 <span class="text-primary text-xs font-bold uppercase tracking-wider">Zero Trust Architecture</span>
 </div>
 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
-                        Identity as the <br/>
-<span class="text-primary">New Perimeter</span>
+                        Identity-first, <br/>
+<span class="text-primary">Zero Trust Cloud</span>
 </h1>
 <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed max-w-[600px]">
-                        Moving beyond traditional firewalls. I implement Zero Trust strategies through OIDC Federation and automated credential rotation, eliminating static keys and reducing the attack surface to near zero.
+                        I’m Ian Peter (Nairobi, Kenya) — a Security-Integrated Systems Architect. I replace static IAM keys with OIDC/SSO, automate rotation with Lambda + Secrets Manager, and enforce SCP/tag guardrails so every request is authenticated, authorized, and observable.
                     </p>
 <div class="flex flex-wrap gap-4 mt-4">
 <button class="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-blue-700 text-white rounded-lg font-bold transition-all shadow-[0_0_15px_rgba(13,13,242,0.4)]">
@@ -206,7 +206,7 @@
 </div>
 <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">OIDC Federation</h3>
 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                        Seamless authentication between GitHub Actions and AWS without static keys. By leveraging OpenID Connect, we establish trust relationships directly between the CI/CD provider and cloud resources.
+                        Cross-cloud OIDC federation (GCP → AWS, GitHub Actions → AWS) removes long-lived credentials. Trust policies map signed identities to least-privilege roles.
                     </p>
 <div class="mt-auto pt-4 border-t border-gray-100 dark:border-[#313168]/50 flex items-center gap-2 text-primary text-sm font-bold cursor-pointer">
 <span>Inspect Flow</span>
@@ -219,7 +219,7 @@
 </div>
 <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Role-Based Access (RBAC)</h3>
 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                        Granular permissions ensuring least-privilege access for all workloads. IAM policies are scoped strictly to the resources required for deployment, minimizing blast radius.
+                        Role design with SCPs + tag conditions (Country, Environment) enforces least privilege, prevents shadow infra, and aligns identity with cost/data residency controls.
                     </p>
 <div class="mt-auto pt-4 border-t border-gray-100 dark:border-[#313168]/50 flex items-center gap-2 text-primary text-sm font-bold cursor-pointer">
 <span>View Policy</span>
@@ -232,7 +232,7 @@
 </div>
 <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Zero Trust Architecture</h3>
 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                        Never trust, always verify. Strict identity verification for every user and device accessing resources, regardless of network location.
+                        Continuous verification and short-lived tokens; enforcement at every hop (IdP → STS → service). No static keys, auditability by design.
                     </p>
 <div class="mt-auto pt-4 border-t border-gray-100 dark:border-[#313168]/50 flex items-center gap-2 text-primary text-sm font-bold cursor-pointer">
 <span>Read Manifesto</span>
@@ -331,7 +331,7 @@
 </div>
 <div>
 <p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Email</p>
-<p class="text-white font-mono text-sm">hello@security-architect.dev</p>
+<p class="text-white font-mono text-sm">ianplimo@gmail.com</p>
 </div>
 </div>
 <div class="flex items-center gap-4 group cursor-pointer">
