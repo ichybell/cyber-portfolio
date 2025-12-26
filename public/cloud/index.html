@@ -1,6 +1,5 @@
-{{ $basePath := partial "basepath.html" . -}}
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en"><head><script src="/cyber-portfolio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=cyber-portfolio/livereload" data-no-instant defer></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cloud Architecture &amp; FinOps Portfolio</title>
@@ -56,12 +55,12 @@
 </div>
 <div class="hidden xl:flex flex-1 justify-end gap-8 items-center">
 <nav class="flex items-center gap-6">
-<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}">Home</a>
-<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="{{ $basePath }}cloud/">Cloud Architecture &amp; FinOps</a>
-<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}identity/">Identity &amp; Security Operations</a>
-<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}research/">Offensive Research &amp; CTF</a>
-<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}leadership/">Leadership &amp; Advocacy</a>
-<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}contact/">Contact Me</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="/cyber-portfolio/">Home</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="/cyber-portfolio/cloud/">Cloud Architecture &amp; FinOps</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="/cyber-portfolio/identity/">Identity &amp; Security Operations</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="/cyber-portfolio/research/">Offensive Research &amp; CTF</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="/cyber-portfolio/leadership/">Leadership &amp; Advocacy</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="/cyber-portfolio/contact/">Contact Me</a>
 </nav>
 </div>
 <div class="xl:hidden text-white">
@@ -71,7 +70,7 @@
 </header>
 <main class="flex flex-col items-center w-full">
 <div class="w-full max-w-5xl px-4 py-12 md:py-20 flex flex-col gap-6">
-<a class="text-primary text-sm font-medium flex items-center gap-1 hover:underline w-fit" href="{{ $basePath }}">
+<a class="text-primary text-sm font-medium flex items-center gap-1 hover:underline w-fit" href="/cyber-portfolio/">
 <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Projects
 </a>
 <div class="flex flex-col gap-4">
@@ -149,7 +148,7 @@
 <span class="text-green-400">QueueLength</span> emitted per queue → CloudWatch<br/>
 Step scaling policies:<br/>
 • Non-empty → +1 (ensure a worker exists)<br/>
-• Backlog & drain < 300 → +1 (scale out)<br/>
+• Backlog & drain &lt; 300 → +1 (scale out)<br/>
 • Drain > 300 → -1 (scale in)<br/>
 • Empty 3m → scale to zero (save cost)<br/>
 <span class="text-blue-300">treat_missing_data</span> tuned to avoid false scale-down
