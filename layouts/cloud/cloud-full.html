@@ -76,36 +76,32 @@
 </a>
 <div class="flex flex-col gap-4">
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">AWS Architecture</span>
-<span class="px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase tracking-wider">FinOps Success</span>
+<span class="px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">ECS Fargate</span>
+<span class="px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase tracking-wider">Queue-Semantic Autoscaling</span>
 </div>
 <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-                    Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Scaling with FinOps</span>
+                    Migrating Celery Workers: App Runner ➜ ECS Fargate
                 </h1>
 <p class="text-gray-400 text-lg md:text-xl font-normal leading-relaxed max-w-3xl">
-                    A deep dive into migrating from App Runner to ECS Fargate and achieving <span class="text-white font-semibold">56% cost reduction</span> through EKS rightsizing and spot instance orchestration.
+                    Replatformed Celery worker pools from App Runner to ECS Fargate to gain lifecycle control, deep observability, and cost-efficient autoscaling tied to Redis queue semantics (custom metrics → CloudWatch → step scaling).
                 </p>
 </div>
 <div class="flex flex-wrap gap-3 mt-4">
 <div class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-dark border border-border-dark px-4 hover:border-primary/50 transition-colors cursor-default">
 <span class="material-symbols-outlined text-[18px] text-orange-400">cloud</span>
-<p class="text-white text-sm font-medium">AWS</p>
-</div>
-<div class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-dark border border-border-dark px-4 hover:border-primary/50 transition-colors cursor-default">
-<span class="material-symbols-outlined text-[18px] text-blue-400">deployed_code</span>
-<p class="text-white text-sm font-medium">Docker</p>
+<p class="text-white text-sm font-medium">ECS Fargate (private subnets)</p>
 </div>
 <div class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-dark border border-border-dark px-4 hover:border-primary/50 transition-colors cursor-default">
 <span class="material-symbols-outlined text-[18px] text-purple-400">code</span>
-<p class="text-white text-sm font-medium">Terraform</p>
-</div>
-<div class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-dark border border-border-dark px-4 hover:border-primary/50 transition-colors cursor-default">
-<span class="material-symbols-outlined text-[18px] text-green-400">monetization_on</span>
-<p class="text-white text-sm font-medium">FinOps</p>
+<p class="text-white text-sm font-medium">Terraform (App Auto Scaling)</p>
 </div>
 <div class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-dark border border-border-dark px-4 hover:border-primary/50 transition-colors cursor-default">
 <span class="material-symbols-outlined text-[18px] text-cyan-400">monitor_heart</span>
-<p class="text-white text-sm font-medium">Datadog</p>
+<p class="text-white text-sm font-medium">Custom metrics exporter (Redis → CW)</p>
+</div>
+<div class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-surface-dark border border-border-dark px-4 hover:border-primary/50 transition-colors cursor-default">
+<span class="material-symbols-outlined text-[18px] text-green-400">auto_awesome</span>
+<p class="text-white text-sm font-medium">Scale-to-zero after 3 min idle</p>
 </div>
 </div>
 </div>
@@ -114,27 +110,27 @@
 <div class="max-w-5xl mx-auto px-4 py-16 relative z-10">
 <div class="flex items-center gap-2 mb-8">
 <div class="w-8 h-[2px] bg-red-500"></div>
-<h2 class="text-red-400 text-sm font-bold uppercase tracking-widest">Phase 1: Operational Challenge</h2>
+<h2 class="text-red-400 text-sm font-bold uppercase tracking-widest">Why App Runner Didn’t Fit Celery</h2>
 </div>
 <div class="grid md:grid-cols-2 gap-12 items-center">
 <div class="flex flex-col gap-6">
-<h3 class="text-3xl font-bold text-white">The Bottleneck: App Runner Limits</h3>
+<h3 class="text-3xl font-bold text-white">Lifecycle & Observability Gaps</h3>
 <p class="text-gray-400 leading-relaxed">
-                            The initial architecture relied on AWS App Runner for simplicity. However, as traffic surged during peak events, hard concurrency limits caused request queuing. Coupled with a lack of granular control over instance types, this led to unpredictable billing surges up to 300%.
+                            App Runner is HTTP-oriented; Celery workers need queue-aware lifecycle, shell access, and predictable scaling. Opaque restarts dropped work, queue depth wasn’t a scaling signal, and Redis metrics weren’t available for autoscaling. We needed worker visibility, drain-aware scaling, and zero-idle cost.
                         </p>
 <div class="flex flex-col gap-4 mt-2">
 <div class="flex items-start gap-4 p-4 rounded-lg bg-surface-dark border border-red-500/20">
-<span class="material-symbols-outlined text-red-400 mt-1">speed</span>
+<span class="material-symbols-outlined text-red-400 mt-1">visibility_off</span>
 <div>
-<h4 class="text-white font-bold text-base">Latency Spikes</h4>
-<p class="text-gray-400 text-sm">P99 latency increased from 200ms to 2.5s under load.</p>
+<h4 class="text-white font-bold text-base">No queue introspection</h4>
+<p class="text-gray-400 text-sm">Couldn’t inspect Celery queues or worker state; hot queues hard to diagnose.</p>
 </div>
 </div>
 <div class="flex items-start gap-4 p-4 rounded-lg bg-surface-dark border border-red-500/20">
-<span class="material-symbols-outlined text-red-400 mt-1">payments</span>
+<span class="material-symbols-outlined text-red-400 mt-1">rebase_edit</span>
 <div>
-<h4 class="text-white font-bold text-base">Cost Inefficiency</h4>
-<p class="text-gray-400 text-sm">Static provisioning resulted in 40% idle compute waste.</p>
+<h4 class="text-white font-bold text-base">Lifecycle mismatch</h4>
+<p class="text-gray-400 text-sm">HTTP autoscaling ignored backlog; restarts could drop or duplicate work.</p>
 </div>
 </div>
 </div>
@@ -143,30 +139,21 @@
 <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
 <div class="relative bg-surface-dark border border-border-dark p-6 rounded-xl shadow-2xl">
 <div class="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
-<span class="text-xs font-mono text-gray-500">METRICS // COST_EXPLORER_VIEW</span>
+<span class="text-xs font-mono text-gray-500">CELERY // METRICS EXPORTER</span>
 <div class="flex gap-1">
 <div class="w-2 h-2 rounded-full bg-red-500"></div>
 <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
 </div>
 </div>
-<div class="flex items-end justify-between h-40 gap-2 px-2">
-<div class="w-full bg-blue-900/30 h-[30%] rounded-t-sm relative group/bar"></div>
-<div class="w-full bg-blue-900/30 h-[45%] rounded-t-sm relative group/bar"></div>
-<div class="w-full bg-blue-900/30 h-[35%] rounded-t-sm relative group/bar"></div>
-<div class="w-full bg-blue-900/30 h-[40%] rounded-t-sm relative group/bar"></div>
-<div class="w-full bg-red-500 h-[95%] rounded-t-sm relative group/bar animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]">
-<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap">Peak Event</div>
+<div class="flex flex-col gap-2 text-sm text-gray-300 font-mono">
+<span class="text-green-400">QueueLength</span> emitted per queue → CloudWatch<br/>
+Step scaling policies:<br/>
+• Non-empty → +1 (ensure a worker exists)<br/>
+• Backlog & drain < 300 → +1 (scale out)<br/>
+• Drain > 300 → -1 (scale in)<br/>
+• Empty 3m → scale to zero (save cost)<br/>
+<span class="text-blue-300">treat_missing_data</span> tuned to avoid false scale-down
 </div>
-<div class="w-full bg-red-500/80 h-[85%] rounded-t-sm relative group/bar"></div>
-<div class="w-full bg-blue-900/30 h-[50%] rounded-t-sm relative group/bar"></div>
-</div>
-<div class="flex justify-between mt-2 text-[10px] text-gray-500 font-mono uppercase">
-<span>Day 1</span>
-<span>Day 7</span>
-</div>
-<div class="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded text-xs text-red-300 font-mono">
-<span class="material-symbols-outlined align-middle text-sm mr-1">warning</span> ALERT: Monthly budget exceeded by 145%
-                            </div>
 </div>
 </div>
 </div>
@@ -175,40 +162,40 @@
 <section class="w-full max-w-5xl mx-auto px-4 py-16">
 <div class="flex items-center gap-2 mb-8 justify-end md:justify-start">
 <div class="w-8 h-[2px] bg-primary"></div>
-<h2 class="text-primary text-sm font-bold uppercase tracking-widest">Phase 2: Architectural Solution</h2>
+<h2 class="text-primary text-sm font-bold uppercase tracking-widest">Target Architecture (ECS on Fargate)</h2>
 </div>
 <div class="flex flex-col md:flex-row gap-10">
 <div class="md:w-1/2 flex flex-col justify-center gap-6">
-<h3 class="text-3xl font-bold text-white">Containerizing for Control</h3>
+<h3 class="text-3xl font-bold text-white">Queue-Semantic Autoscaling</h3>
 <p class="text-gray-400 leading-relaxed">
-                        The solution involved a full migration to Amazon ECS on Fargate. This allowed for custom task definitions and fine-grained auto-scaling policies based on CPU utilization and SQS queue depth.
+                        ECS services (per Celery queue set) in private subnets; Redis/Valkey on ElastiCache; a metrics exporter publishes queue depth to CloudWatch, driving Application Auto Scaling policies. Flower stays lightweight (optionally on App Runner) for monitoring only.
                     </p>
 <ul class="space-y-4">
 <li class="flex items-start gap-3">
 <div class="p-1 rounded bg-primary/20 text-primary">
-<span class="material-symbols-outlined text-sm">check</span>
+<span class="material-symbols-outlined text-sm">query_stats</span>
 </div>
 <div>
-<strong class="text-white block text-sm">Spot Instance Orchestration</strong>
-<span class="text-gray-500 text-sm">Leveraged Fargate Spot for non-critical workloads, reducing compute costs by ~70%.</span>
+<strong class="text-white block text-sm">Custom CW metrics</strong>
+<span class="text-gray-500 text-sm">Per-queue QueueLength published every 10s; alarms feed step scaling.</span>
 </div>
 </li>
 <li class="flex items-start gap-3">
 <div class="p-1 rounded bg-primary/20 text-primary">
-<span class="material-symbols-outlined text-sm">check</span>
+<span class="material-symbols-outlined text-sm">bolt</span>
 </div>
 <div>
-<strong class="text-white block text-sm">Karpenter Implementation</strong>
-<span class="text-gray-500 text-sm">Replaced Cluster Autoscaler with Karpenter for just-in-time node provisioning on EKS clusters.</span>
+<strong class="text-white block text-sm">Scale from zero safely</strong>
+<span class="text-gray-500 text-sm">Non-empty → +1 ensures liveness; 3-minute empty → scale-to-zero to cut idle cost.</span>
 </div>
 </li>
 <li class="flex items-start gap-3">
 <div class="p-1 rounded bg-primary/20 text-primary">
-<span class="material-symbols-outlined text-sm">check</span>
+<span class="material-symbols-outlined text-sm">public</span>
 </div>
 <div>
-<strong class="text-white block text-sm">Terraform IaC</strong>
-<span class="text-gray-500 text-sm">Modularized infrastructure code to ensure repeatable, drift-resistant environments.</span>
+<strong class="text-white block text-sm">Multi-country safety</strong>
+<span class="text-gray-500 text-sm">Country-prefixed queues; option for per-country clusters to avoid cross-traffic.</span>
 </div>
 </li>
 </ul>
@@ -221,30 +208,24 @@
 <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
 <div class="w-3 h-3 rounded-full bg-green-500"></div>
 </div>
-<div class="text-xs text-gray-500 font-mono">main.tf — terraform</div>
+<div class="text-xs text-gray-500 font-mono">autoscaling.tf</div>
 </div>
 <div class="p-4 overflow-x-auto code-scroll">
-<pre class="text-xs md:text-sm font-mono leading-relaxed text-gray-300"><span class="text-purple-400">resource</span> <span class="text-green-400">"aws_ecs_service"</span> <span class="text-blue-400">"app_service"</span> {
-  <span class="text-gray-500">name</span>            = <span class="text-green-400">"production-api"</span>
-  <span class="text-gray-500">cluster</span>         = aws_ecs_cluster.main.id
-  <span class="text-gray-500">task_definition</span> = aws_ecs_task_definition.app.arn
-  <span class="text-gray-500">desired_count</span>   = <span class="text-orange-400">2</span>
-  <span class="text-gray-500">capacity_provider_strategy</span> {
-    <span class="text-gray-500">capacity_provider</span> = <span class="text-green-400">"FARGATE_SPOT"</span>
-    <span class="text-gray-500">weight</span>            = <span class="text-orange-400">80</span>
-  }
-  <span class="text-gray-500">capacity_provider_strategy</span> {
-    <span class="text-gray-500">capacity_provider</span> = <span class="text-green-400">"FARGATE"</span>
-    <span class="text-gray-500">weight</span>            = <span class="text-orange-400">20</span>
-  }
-  <span class="text-gray-500"># Auto-scaling config enabled</span>
-  <span class="text-gray-500"># Cost optimization: 80% Spot instances</span>
-}</pre>
+<pre class="text-xs md:text-sm font-mono leading-relaxed text-gray-300"># Example: Celery service target
+resource "aws_appautoscaling_target" "workers" {
+  max_capacity       = 6
+  min_capacity       = 0
+  service_namespace  = "ecs"
+  scalable_dimension = "ecs:service:DesiredCount"
+}
+# Non-empty queue → ensure 1 task
+# Drain + backlog thresholds manage step scaling
+# Empty 3m → percentChangeInCapacity = -100</pre>
 </div>
 <div class="px-4 py-2 bg-[#1a1a2e]/50 border-top border-[#313168] flex items-center justify-between">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
-<span class="text-xs text-green-400 font-mono">Plan: 4 to add, 0 to change, 2 to destroy.</span>
+<span class="text-xs text-green-400 font-mono">Drift-safe: ignore desired_count in TF</span>
 </div>
 </div>
 </div>
@@ -256,7 +237,7 @@
 <div class="max-w-5xl mx-auto">
 <div class="flex items-center gap-2 mb-10">
 <div class="w-8 h-[2px] bg-green-500"></div>
-<h2 class="text-green-400 text-sm font-bold uppercase tracking-widest">Phase 3: The Result</h2>
+<h2 class="text-green-400 text-sm font-bold uppercase tracking-widest">Impact & Ops</h2>
 </div>
 <div class="grid lg:grid-cols-3 gap-6">
 <div class="lg:col-span-1 bg-gradient-to-br from-primary to-blue-900 rounded-xl p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group">
@@ -264,44 +245,34 @@
 <div>
 <div class="flex items-center gap-2 text-blue-200 mb-2">
 <span class="material-symbols-outlined">trending_down</span>
-<span class="text-sm font-medium uppercase tracking-wider">Total Cloud Spend</span>
+<span class="text-sm font-medium uppercase tracking-wider">Idle cost reduced</span>
 </div>
-<h3 class="text-7xl font-bold text-white tracking-tighter mb-2">56%</h3>
-<p class="text-blue-100 text-sm">Reduction in monthly AWS bill post-migration.</p>
+<h3 class="text-4xl font-bold text-white tracking-tighter mb-2">Scale to 0</h3>
+<p class="text-blue-100 text-sm">3-minute empty → workers drop to zero; exporters stay tiny.</p>
 </div>
 <div class="mt-8 pt-6 border-t border-white/20">
-<div class="text-xs text-blue-200 font-mono mb-1">PROJECTED ANNUAL SAVINGS</div>
-<div class="text-2xl font-bold text-white">$42,000+</div>
+<div class="text-xs text-blue-200 font-mono mb-1">Worker sizing</div>
+<div class="text-2xl font-bold text-white">2 vCPU / 4 GB</div>
 </div>
 </div>
 <div class="lg:col-span-2 grid sm:grid-cols-2 gap-4">
 <div class="bg-background-dark border border-border-dark p-6 rounded-xl hover:border-primary/50 transition-colors">
 <div class="flex justify-between items-start mb-4">
 <div class="p-2 rounded-lg bg-surface-dark border border-border-dark">
-<span class="material-symbols-outlined text-white">timer</span>
-</div>
-<span class="text-green-400 text-xs font-bold bg-green-400/10 px-2 py-1 rounded">+300% Improved</span>
-</div>
-<div class="text-3xl font-bold text-white mb-1">85ms</div>
-<div class="text-sm text-gray-400">Average P99 Latency (down from 2.5s)</div>
-</div>
-<div class="bg-background-dark border border-border-dark p-6 rounded-xl hover:border-primary/50 transition-colors">
-<div class="flex justify-between items-start mb-4">
-<div class="p-2 rounded-lg bg-surface-dark border border-border-dark">
-<span class="material-symbols-outlined text-white">rocket_launch</span>
+<span class="material-symbols-outlined text-white">manage_history</span>
 </div>
 </div>
-<div class="text-3xl font-bold text-white mb-1">99.99%</div>
-<div class="text-sm text-gray-400">Uptime during Black Friday peak</div>
+<div class="text-3xl font-bold text-white mb-1">Queue-aware scale</div>
+<div class="text-sm text-gray-400">Non-empty, drain-based, and empty alarms align capacity to backlog.</div>
 </div>
 <div class="bg-background-dark border border-border-dark p-6 rounded-xl hover:border-primary/50 transition-colors">
 <div class="flex justify-between items-start mb-4">
 <div class="p-2 rounded-lg bg-surface-dark border border-border-dark">
-<span class="material-symbols-outlined text-white">scale</span>
+<span class="material-symbols-outlined text-white">visibility</span>
 </div>
 </div>
-<div class="text-3xl font-bold text-white mb-1">Auto</div>
-<div class="text-sm text-gray-400">Zero-touch scaling via Karpenter</div>
+<div class="text-3xl font-bold text-white mb-1">Better observability</div>
+<div class="text-sm text-gray-400">Custom metrics + Flower (optional) enable live queue/worker visibility.</div>
 </div>
 <div class="bg-background-dark border border-border-dark p-6 rounded-xl hover:border-primary/50 transition-colors relative overflow-hidden">
 <div class="absolute bottom-0 left-0 right-0 h-12 flex items-end opacity-20 px-6 gap-1">
@@ -313,56 +284,20 @@
 </div>
 <div class="flex justify-between items-start mb-4 relative z-10">
 <div class="p-2 rounded-lg bg-surface-dark border border-border-dark">
-<span class="material-symbols-outlined text-white">memory</span>
+<span class="material-symbols-outlined text-white">public</span>
 </div>
 </div>
-<div class="text-3xl font-bold text-white mb-1 relative z-10">40%</div>
-<div class="text-sm text-gray-400 relative z-10">Reduction in idle compute resources</div>
+<div class="text-3xl font-bold text-white mb-1 relative z-10">Country isolation</div>
+<div class="text-sm text-gray-400 relative z-10">Per-country queues/services prevent cross-traffic when multi-tenant.</div>
+</div>
+<div class="bg-background-dark border border-border-dark p-6 rounded-xl hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-surface-dark border border-border-dark">
+<span class="material-symbols-outlined text-white">savings</span>
 </div>
 </div>
-</div>
-<div class="mt-6 bg-background-dark border border-border-dark rounded-xl p-6 md:p-8">
-<h4 class="text-white font-bold mb-6">Cost Optimization Timeline</h4>
-<div class="w-full h-48 flex items-end gap-2 md:gap-4">
-<div class="flex-1 flex flex-col justify-end group">
-<div class="bg-surface-dark border border-gray-700 h-[90%] w-full rounded-t-md relative hover:bg-gray-700 transition-colors">
-<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded pointer-events-none whitespace-nowrap border border-gray-600">
-                                    App Runner: $3.2k
-                                </div>
-</div>
-<span class="text-[10px] text-gray-500 text-center mt-2">JAN</span>
-</div>
-<div class="flex-1 flex flex-col justify-end group">
-<div class="bg-surface-dark border border-gray-700 h-[95%] w-full rounded-t-md relative hover:bg-gray-700 transition-colors">
-<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded pointer-events-none whitespace-nowrap border border-gray-600">
-                                    App Runner: $3.4k
-                                </div>
-</div>
-<span class="text-[10px] text-gray-500 text-center mt-2">FEB</span>
-</div>
-<div class="flex-1 flex flex-col justify-end group">
-<div class="bg-surface-dark border border-gray-700 h-[100%] w-full rounded-t-md relative hover:bg-gray-700 transition-colors border-dashed border-yellow-500/50">
-<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-yellow-900 text-yellow-200 text-xs px-2 py-1 rounded pointer-events-none whitespace-nowrap border border-yellow-700">
-                                    Migration Peak
-                                </div>
-</div>
-<span class="text-[10px] text-yellow-500 font-bold text-center mt-2">MAR</span>
-</div>
-<div class="flex-1 flex flex-col justify-end group">
-<div class="bg-primary/40 h-[60%] w-full rounded-t-md relative hover:bg-primary/60 transition-colors"></div>
-<span class="text-[10px] text-gray-500 text-center mt-2">APR</span>
-</div>
-<div class="flex-1 flex flex-col justify-end group">
-<div class="bg-primary/60 h-[50%] w-full rounded-t-md relative hover:bg-primary/80 transition-colors"></div>
-<span class="text-[10px] text-gray-500 text-center mt-2">MAY</span>
-</div>
-<div class="flex-1 flex flex-col justify-end group">
-<div class="bg-primary h-[44%] w-full rounded-t-md relative shadow-[0_0_15px_rgba(13,13,242,0.4)] hover:bg-blue-600 transition-colors">
-<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white text-xs px-2 py-1 rounded pointer-events-none">
-                                    Optimized: $1.5k
-                                </div>
-</div>
-<span class="text-[10px] text-primary font-bold text-center mt-2">JUN</span>
+<div class="text-3xl font-bold text-white mb-1">Cost transparency</div>
+<div class="text-sm text-gray-400">Cost modeled per-worker-hour; exporters/logs/NAT tracked separately.</div>
 </div>
 </div>
 </div>
