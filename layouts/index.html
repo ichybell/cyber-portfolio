@@ -17,12 +17,31 @@
                 Architecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">self-healing</span>, auto-remediating cloud environments.
             </h1>
             <p class="text-gray-400 text-lg sm:text-xl font-light max-w-2xl leading-relaxed">
-                Building the digital immune systems of tomorrow. I design infrastructure that fights back.
+                Building the digital immune systems of tomorrow that inherently resist compromise. I design infrastructure that fights back.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 mt-4">
                 <a href="{{ $basePath }}cloud/" class="bg-white text-background-dark hover:bg-gray-200 text-base font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
-                    View Projects <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    View Projects
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
                 </a>
+                <a href="#" class="bg-transparent border border-[#313168] hover:border-primary text-white hover:text-primary text-base font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[20px]">download</span>
+                    Resume.pdf
+                </a>
+            </div>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 mt-8 pt-8 border-t border-[#222249]">
+                <div class="flex items-center gap-2 text-gray-400 text-sm">
+                    <span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+                    <span>CISSP Certified</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400 text-sm">
+                    <span class="material-symbols-outlined text-[18px] text-primary">cloud</span>
+                    <span>AWS Solutions Architect Pro</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400 text-sm">
+                    <span class="material-symbols-outlined text-[18px] text-primary">security</span>
+                    <span>OSCP</span>
+                </div>
             </div>
         </div>
 
@@ -36,11 +55,15 @@
                         <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
                     </div>
                     <div class="text-xs text-gray-500 font-mono">visitor@portfolio:~</div>
+                    <div class="text-gray-500">
+                        <span class="material-symbols-outlined text-[16px]">terminal</span>
+                    </div>
                 </div>
                 <div class="p-6 font-mono text-sm h-[320px] overflow-y-auto terminal-scroll flex flex-col gap-4">
                     <div class="text-gray-400">
                         <span class="text-green-500">➜</span> <span class="text-blue-400">~</span> Initializing secure connection...<br/>
                         <span class="text-green-500">➜</span> <span class="text-blue-400">~</span> Loaded portfolio modules v2.4.0<br/>
+                        <span class="text-green-500">➜</span> <span class="text-blue-400">~</span> Type <span class="text-white font-bold">'help'</span> to see available commands.
                     </div>
                     <div class="flex flex-col gap-1">
                         <div class="flex gap-2 text-gray-300">
@@ -51,9 +74,205 @@
                             <span>drwx------ kubernetes-hardening</span>
                             <span>drwx------ iam-policy-engine</span>
                             <span>drwx------ zero-trust-network</span>
+                            <span>drwx------ threat-hunting</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 items-center text-gray-300 mt-2">
+                        <span class="text-green-500">visitor@portfolio:~$</span>
+                        <div class="relative flex-1">
+                            <input autofocus="" class="bg-transparent border-none outline-none text-white w-full p-0 focus:ring-0 font-mono placeholder-gray-700" placeholder="type 'help'..." type="text"/>
                         </div>
                     </div>
                 </div>
+            </div>
+            <p class="text-center text-xs text-gray-500 mt-4 font-mono">
+                Try commands: <span class="text-gray-300">help</span>, <span class="text-gray-300">skills</span>, <span class="text-gray-300">ctf-rank</span>
+            </p>
+        </div>
+    </div>
+</section>
+<section class="border-y border-[#222249] bg-[#0b0b1a]">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="flex flex-col gap-2 p-4 rounded-lg border border-[#222249] bg-background-dark relative overflow-hidden group hover:border-primary/50 transition-colors">
+                <div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                    <span class="material-symbols-outlined text-4xl text-primary">timer</span>
+                </div>
+                <p class="text-gray-400 text-sm font-mono uppercase tracking-wider">System Uptime</p>
+                <p class="text-3xl font-bold text-white">99.99%</p>
+                <div class="w-full bg-[#222249] h-1 mt-2 rounded-full overflow-hidden">
+                    <div class="bg-green-500 h-full w-[99.99%]"></div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 p-4 rounded-lg border border-[#222249] bg-background-dark relative overflow-hidden group hover:border-primary/50 transition-colors">
+                <div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                    <span class="material-symbols-outlined text-4xl text-primary">security</span>
+                </div>
+                <p class="text-gray-400 text-sm font-mono uppercase tracking-wider">Threats Mitigated</p>
+                <p class="text-3xl font-bold text-white">14,205</p>
+                <p class="text-xs text-green-400 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">arrow_upward</span> +12% this week
+                </p>
+            </div>
+            <div class="flex flex-col gap-2 p-4 rounded-lg border border-[#222249] bg-background-dark relative overflow-hidden group hover:border-primary/50 transition-colors">
+                <div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                    <span class="material-symbols-outlined text-4xl text-primary">bug_report</span>
+                </div>
+                <p class="text-gray-400 text-sm font-mono uppercase tracking-wider">Vulns Patched</p>
+                <p class="text-3xl font-bold text-white">842</p>
+                <p class="text-xs text-gray-500">Auto-remediation active</p>
+            </div>
+            <div class="flex flex-col gap-2 p-4 rounded-lg border border-[#222249] bg-background-dark relative overflow-hidden group hover:border-primary/50 transition-colors">
+                <div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                    <span class="material-symbols-outlined text-4xl text-primary">flag</span>
+                </div>
+                <p class="text-gray-400 text-sm font-mono uppercase tracking-wider">CTF Rank</p>
+                <p class="text-3xl font-bold text-white">Top 1%</p>
+                <p class="text-xs text-primary">HackTheBox / TryHackMe</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-20 relative">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+                <h2 class="text-3xl font-bold text-white mb-2">Technical Arsenal</h2>
+                <p class="text-gray-400 max-w-xl">
+                    Deploying infrastructure as code with a security-first mindset.
+                    Every layer is monitored, logged, and ready to respond.
+                </p>
+            </div>
+            <a class="text-primary hover:text-white font-medium flex items-center gap-2 transition-colors" href="#">
+                View Full Tech Stack <span class="material-symbols-outlined text-[18px]">arrow_right_alt</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="group bg-surface-dark border border-[#313168] rounded-xl overflow-hidden hover:border-primary transition-all duration-300">
+                <div class="p-6 border-b border-[#313168] bg-[#0a0a12] relative h-48 flex items-center justify-center">
+                    <div class="w-full h-full bg-cover bg-center opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Abstract line drawing of a cloud network architecture with firewall and database nodes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcKIfPj7Z0suKMo2oiWcsqZvh9pvFRWU3eGlC8dE6ERbpTX7hvq-ioGlEI5l1f2Al-b_kjkCmfc1AI_SyOwOhF2LqjM0rN_16UdoB5JYcdZ49klIi6EiIwGdD9LloAPaMweZpRosJsvuqjV1EgKuuZHfN-hkxPQPYNlU5mq_-G9-506tiprB4SIB-WcHD3YNDvcposYs0lykyMSjyG6kt4gpWj-vqm8b10VxHpoki1jRUVK_osOyr72dyBo4YGwge6nR0lWRyMySMk');">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a12] to-transparent"></div>
+                    <div class="absolute bottom-4 left-6">
+                        <span class="bg-primary/20 text-primary text-xs font-mono px-2 py-1 rounded border border-primary/30">AWS</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Serverless WAF Automation</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Event-driven architecture that automatically updates WAF rules based on real-time threat intelligence feeds.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-gray-500 bg-[#1f1f3a] px-2 py-1 rounded">Lambda</span>
+                        <span class="text-xs text-gray-500 bg-[#1f1f3a] px-2 py-1 rounded">Kinesis</span>
+                        <span class="text-xs text-gray-500 bg-[#1f1f3a] px-2 py-1 rounded">WAFv2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="group bg-surface-dark border border-[#313168] rounded-xl overflow-hidden hover:border-primary transition-all duration-300 flex flex-col">
+                <div class="p-4 border-b border-[#313168] bg-[#0d0d1a] flex items-center justify-between">
+                    <span class="text-xs font-mono text-gray-400">remediation.py</span>
+                    <div class="flex gap-1.5">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-500/20"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/20"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-500/20"></div>
+                    </div>
+                </div>
+                <div class="p-6 bg-[#0a0a12] font-mono text-xs text-gray-300 overflow-x-auto flex-1">
+<pre><code><span class="text-purple-400">def</span> <span class="text-blue-400">auto_remediate</span>(event):
+    instance_id = event[<span class="text-green-400">'detail'</span>][<span class="text-green-400">'instance-id'</span>]
+    <span class="text-gray-500"># Isolate compromised host</span>
+    ec2.modify_instance_attribute(
+        InstanceId=instance_id,
+        Groups=[ISOLATION_SG_ID]
+    )
+    <span class="text-purple-400">print</span>(<span class="text-green-400">f"Host {instance_id} isolated."</span>)
+    snapshot_evidence(instance_id)</code></pre>
+                </div>
+                <div class="p-6 border-t border-[#313168]">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Automated Incident Response</h3>
+                    <p class="text-gray-400 text-sm">
+                        Python-based Lambda functions to instantly quarantine compromised EC2 instances upon GuardDuty alerts.
+                    </p>
+                </div>
+            </div>
+            <div class="group bg-surface-dark border border-[#313168] rounded-xl overflow-hidden hover:border-primary transition-all duration-300">
+                <div class="p-6 border-b border-[#313168] bg-[#0a0a12] relative h-48 flex items-center justify-center">
+                    <div class="w-full h-full bg-cover bg-center opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Schematic representation of a kubernetes cluster with pods and service mesh connections" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2G6PMLnyGI2XZOaxqxygOQ6wVgMeIfk_-05dwyGVpAlKEwfLLuSJUda3wTW6UteMgfupACyLQDa3fwC2ooRPmhuC8ewuWiUEkN1j0L5IzrzJ-FYRtAsIVphtiZe02s0JrdMgx2INCrPp98-e1_wQFmhJIJXLmmafsUI3Xn4Cb3RMroIandZYtoDrufzQyIc8lKS8u4u__pvmkdTk91lwXIUb-zk2zWGFHgOCT6-QBKp9ZPJFEtuQfQjb8H8fos6ZDo3lsul8Qbwaa');">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a12] to-transparent"></div>
+                    <div class="absolute bottom-4 left-6">
+                        <span class="bg-primary/20 text-primary text-xs font-mono px-2 py-1 rounded border border-primary/30">Kubernetes</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Zero Trust Mesh</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Implementing Istio for mutual TLS everywhere, ensuring service-to-service communication is encrypted and authenticated.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-gray-500 bg-[#1f1f3a] px-2 py-1 rounded">Istio</span>
+                        <span class="text-xs text-gray-500 bg-[#1f1f3a] px-2 py-1 rounded">mTLS</span>
+                        <span class="text-xs text-gray-500 bg-[#1f1f3a] px-2 py-1 rounded">OPA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-20 bg-background-dark border-t border-[#222249]">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 grid grid-cols-2 gap-4">
+                <div class="space-y-4 mt-8">
+                    <div class="bg-surface-dark p-6 rounded-lg border border-[#313168] h-40 flex flex-col justify-between">
+                        <span class="material-symbols-outlined text-3xl text-primary">gavel</span>
+                        <span class="text-white font-bold">Compliance as Code</span>
+                    </div>
+                    <div class="bg-surface-dark p-6 rounded-lg border border-[#313168] h-48 flex flex-col justify-between">
+                        <span class="material-symbols-outlined text-3xl text-primary">visibility</span>
+                        <span class="text-white font-bold">Observability & Logs</span>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-surface-dark p-6 rounded-lg border border-[#313168] h-48 flex flex-col justify-between">
+                        <span class="material-symbols-outlined text-3xl text-primary">lock</span>
+                        <span class="text-white font-bold">Identity Management</span>
+                    </div>
+                    <div class="bg-surface-dark p-6 rounded-lg border border-[#313168] h-40 flex flex-col justify-between">
+                        <span class="material-symbols-outlined text-3xl text-primary">deployed_code</span>
+                        <span class="text-white font-bold">DevSecOps Pipelines</span>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 flex flex-col gap-6">
+                <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">
+                    Security isn't an addon.<br/>
+                    It's the foundation.
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    I move beyond simple firewalls. I architect environments where security policies are version-controlled, infrastructure is immutable, and remediation is automated.
+                </p>
+                <ul class="space-y-4 mt-4">
+                    <li class="flex items-start gap-3">
+                        <div class="mt-1 min-w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xs text-primary font-bold">check</span>
+                        </div>
+                        <span class="text-gray-300"><strong>Shift Left:</strong> Integrating security scanning into CI/CD pipelines.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="mt-1 min-w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xs text-primary font-bold">check</span>
+                        </div>
+                        <span class="text-gray-300"><strong>Immutable Infrastructure:</strong> No patching in production. Replace, don't repair.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="mt-1 min-w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xs text-primary font-bold">check</span>
+                        </div>
+                        <span class="text-gray-300"><strong>Least Privilege:</strong> Granular IAM roles and policies by default.</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
