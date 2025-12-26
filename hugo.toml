@@ -1,4 +1,4 @@
 theme = []
-baseURL = https://ichybell.github.io/
-languageCode = en-us
-title = Ian Peter
+baseURL = "https://ichybell.github.io/"
+languageCode = "en-us"
+title = "Ian Peter"
