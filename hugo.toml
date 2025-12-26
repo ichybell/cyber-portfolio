@@ -1,4 +1,7 @@
 theme = []
-baseURL = "https://ichybell.github.io/"
+baseURL = "https://ichybell.github.io/cyber-portfolio/"
 languageCode = "en-us"
 title = "Ian Peter"
+
+[params]
+  basePath = "/cyber-portfolio/"

@@ -1,0 +1,41 @@
+{{ define "main" }}
+<main class="w-full max-w-5xl mx-auto px-4 py-12 md:py-20">
+  <header class="mb-10">
+    <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+      {{ .Title }}
+    </h1>
+    {{ with .Params.subtitle }}
+      <p class="text-gray-400 mt-4 text-lg">{{ . }}</p>
+    {{ end }}
+    {{ with .Date }}
+      {{ if not $.Params.hideDate }}
+        <p class="text-xs font-mono text-gray-500 mt-4 uppercase tracking-widest">
+          {{ .Format "Jan 2, 2006" }}
+        </p>
+      {{ end }}
+    {{ end }}
+  </header>
+
+  <article class="prose prose-invert max-w-none">
+    {{ .Content }}
+  </article>
+
+  {{ with .Params.tags }}
+    <div class="mt-10 flex flex-wrap gap-2">
+      {{ range . }}
+        <span class="px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase">{{ . }}</span>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  {{ if .Parent }}
+    <div class="mt-12">
+      <a href="{{ partial "internalurl.html" (dict "ctx" $ "url" .Parent.RelPermalink) }}" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-medium">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Back to {{ .Parent.Title }}
+      </a>
+    </div>
+  {{ end }}
+</main>
+{{ end }}
+

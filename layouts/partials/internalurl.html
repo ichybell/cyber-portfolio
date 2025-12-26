@@ -1,0 +1,10 @@
+{{- $ctx := .ctx -}}
+{{- $url := .url -}}
+{{- $base := partial "basepath.html" $ctx -}}
+
+{{- if or (eq $base "/") (strings.HasPrefix $url $base) -}}
+  {{- $url -}}
+{{- else -}}
+  {{- printf "%s%s" $base (strings.TrimPrefix "/" $url) -}}
+{{- end -}}
+

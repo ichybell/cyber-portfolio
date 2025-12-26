@@ -4,6 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>{{ .Title }} | CyberArchitect</title>
+    {{ $basePath := partial "basepath.html" . }}
     
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -38,12 +39,17 @@
     </script>
     <style>
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .blinking-cursor::after { content: "█"; animation: blink 1s step-end infinite; color: #0d0df2; margin-left: 4px; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .scanline { width: 100%; height: 100px; z-index: 10; background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(13, 13, 242, 0.05) 50%, rgba(0,0,0,0) 100%); opacity: 0.1; position: absolute; bottom: 100%; animation: scanline 10s linear infinite; pointer-events: none; }
+        @keyframes scanline { 0% { bottom: 100%; } 100% { bottom: -100%; } }
         .terminal-scroll::-webkit-scrollbar { width: 8px; }
         .terminal-scroll::-webkit-scrollbar-track { background: #0a0a12; }
         .terminal-scroll::-webkit-scrollbar-thumb { background: #313168; border-radius: 4px; }
+        .terminal-scroll::-webkit-scrollbar-thumb:hover { background: #0d0df2; }
     </style>
 </head>
-<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-x-hidden">
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white overflow-x-hidden">
     
     <nav class="sticky top-0 z-50 w-full border-b border-[#222249] bg-background-dark/95 backdrop-blur-sm">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,18 +58,18 @@
                     <div class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center text-primary border border-primary/40">
                         <span class="material-symbols-outlined">shield_lock</span>
                     </div>
-                    <a href="/" class="text-white text-lg font-bold tracking-tight">CyberArchitect_</a>
+                    <a href="{{ $basePath }}" class="text-white text-lg font-bold tracking-tight">CyberArchitect_</a>
                 </div>
                 <div class="hidden xl:flex items-center gap-6">
-                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="/">Home</a>
-                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="/cloud">Cloud Architecture</a>
-                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="/identity">Identity & Security</a>
-                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="/research">Offensive Research</a>
-                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="/software">Software Eng</a>
-                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="/leadership">Leadership</a>
+                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="{{ $basePath }}">Home</a>
+                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="{{ $basePath }}cloud/">Cloud Architecture</a>
+                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="{{ $basePath }}identity/">Identity & Security</a>
+                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="{{ $basePath }}research/">Offensive Research</a>
+                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="{{ $basePath }}software/">Software Eng</a>
+                    <a class="text-xs font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide" href="{{ $basePath }}leadership/">Leadership</a>
                 </div>
                 <div class="hidden md:flex shrink-0">
-                    <a href="/contact" class="bg-primary hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition-all shadow-[0_0_15px_rgba(13,13,242,0.3)] flex items-center gap-2">
+                    <a href="{{ $basePath }}contact/" class="bg-primary hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition-all shadow-[0_0_15px_rgba(13,13,242,0.3)] flex items-center gap-2">
                         <span class="material-symbols-outlined text-[18px]">encrypted</span>
                         <span>Secure Comms</span>
                     </a>

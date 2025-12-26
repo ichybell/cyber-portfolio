@@ -1,0 +1,12 @@
+{{- $p := "/" -}}
+{{- with site.Params.basePath -}}
+  {{- $p = . -}}
+{{- end -}}
+{{- if not (strings.HasPrefix $p "/") -}}
+  {{- $p = printf "/%s" $p -}}
+{{- end -}}
+{{- if not (strings.HasSuffix $p "/") -}}
+  {{- $p = printf "%s/" $p -}}
+{{- end -}}
+{{- $p -}}
+

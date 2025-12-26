@@ -17,6 +17,12 @@
             <div class="text-gray-400 leading-relaxed mb-6">
                 {{ .Content }}
             </div>
+
+            <div class="mb-6">
+                <a href="{{ partial "internalurl.html" (dict "ctx" $ "url" .RelPermalink) }}" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-medium">
+                    Read full write-up <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </a>
+            </div>
             
             <div class="flex flex-wrap gap-2">
                 {{ range .Params.tags }}
