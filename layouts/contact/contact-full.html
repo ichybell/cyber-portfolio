@@ -1,0 +1,238 @@
+{{ $basePath := partial "basepath.html" . -}}
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - Cyber Architect</title>
+<meta content="nosniff" http-equiv="X-Content-Type-Options"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0d0df2",
+              "background-light": "#f5f5f8",
+              "background-dark": "#101022",
+              "surface-dark": "#181834",
+              "border-dark": "#313168",
+              "text-muted": "#9090cb",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+            },
+            backgroundImage: {
+                'grid-pattern': "linear-gradient(to right, #222249 1px, transparent 1px), linear-gradient(to bottom, #222249 1px, transparent 1px)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(24, 24, 52, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bg-grid {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, 10%, black, 90%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, 10%, black, 90%, transparent);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #101022; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #313168; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #0d0df2; }
+    </style>
+</head>
+<body class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark font-display overflow-x-hidden text-white selection:bg-primary selection:text-white">
+<div class="fixed inset-0 pointer-events-none z-0 bg-grid-pattern opacity-[0.15] bg-grid"></div>
+<header class="sticky top-0 z-50 w-full border-b border-border-dark glass-panel">
+<div class="px-6 md:px-10 py-4 flex items-center justify-between mx-auto w-full max-w-[1600px]">
+<div class="flex items-center gap-4 text-white hover:opacity-80 transition-opacity cursor-pointer">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">shield_lock</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-wider">CYBER_ARCHITECT</h2>
+</div>
+<button class="xl:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden xl:flex flex-1 justify-end gap-6">
+<nav class="flex items-center gap-5">
+<a class="text-text-muted hover:text-white transition-colors text-xs font-medium" href="{{ $basePath }}">Home</a>
+<a class="text-text-muted hover:text-white transition-colors text-xs font-medium" href="{{ $basePath }}cloud/">Cloud Architecture &amp; FinOps</a>
+<a class="text-text-muted hover:text-white transition-colors text-xs font-medium" href="{{ $basePath }}identity/">Identity &amp; Security Operations</a>
+<a class="text-text-muted hover:text-white transition-colors text-xs font-medium" href="{{ $basePath }}research/">Offensive Research &amp; CTF</a>
+<a class="text-text-muted hover:text-white transition-colors text-xs font-medium" href="{{ $basePath }}software/">Software Engineering</a>
+<a class="text-text-muted hover:text-white transition-colors text-xs font-medium" href="{{ $basePath }}leadership/">Leadership &amp; Advocacy</a>
+<a class="text-white text-xs font-medium border-b-2 border-primary pb-0.5" href="{{ $basePath }}contact/">Contact Me</a>
+</nav>
+</div>
+</div>
+</header>
+<main class="relative z-10 flex-grow flex flex-col justify-center py-10 px-4 md:px-10 lg:px-20">
+<div class="w-full max-w-7xl mx-auto">
+<div class="mb-12">
+<div class="flex flex-col gap-3 max-w-3xl">
+<div class="flex items-center gap-2 text-primary text-sm font-mono uppercase tracking-widest mb-1">
+<span class="material-symbols-outlined text-sm">wifi_tethering</span>
+                        Secure Channel Ready
+                    </div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight uppercase">
+                        Establish Secure <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">Connection</span>
+                    </h1>
+<p class="text-text-muted text-lg font-normal leading-relaxed max-w-2xl">
+                        Initiate encrypted communication protocols. Whether you require infrastructure auditing or architectural consultation, transmit your parameters below.
+                    </p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+<div class="lg:col-span-7">
+<form class="glass-panel border border-border-dark rounded-xl p-6 md:p-8 flex flex-col gap-6 shadow-2xl shadow-black/50">
+<div class="flex flex-col md:flex-row gap-6">
+<label class="flex flex-col flex-1">
+<span class="text-white text-sm font-bold tracking-wide pb-2 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">badge</span>
+                                    Identity / Name
+                                </span>
+<input class="form-input w-full rounded-lg text-white placeholder:text-text-muted/50 bg-surface-dark border border-border-dark focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 transition-all" placeholder="Enter identification" type="text"/>
+</label>
+<label class="flex flex-col flex-1">
+<span class="text-white text-sm font-bold tracking-wide pb-2 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">alternate_email</span>
+                                    Secure Endpoint
+                                </span>
+<input class="form-input w-full rounded-lg text-white placeholder:text-text-muted/50 bg-surface-dark border border-border-dark focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 transition-all" placeholder="user@domain.com" type="email"/>
+</label>
+</div>
+<label class="flex flex-col w-full">
+<span class="text-white text-sm font-bold tracking-wide pb-2 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">topic</span>
+                                Protocol Subject
+                            </span>
+<input class="form-input w-full rounded-lg text-white placeholder:text-text-muted/50 bg-surface-dark border border-border-dark focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 transition-all" placeholder="Project Inquiry / Vulnerability Report" type="text"/>
+</label>
+<label class="flex flex-col w-full flex-1">
+<span class="text-white text-sm font-bold tracking-wide pb-2 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">encrypted</span>
+                                Encrypted Content
+                            </span>
+<textarea class="form-textarea w-full rounded-lg text-white placeholder:text-text-muted/50 bg-surface-dark border border-border-dark focus:border-primary focus:ring-1 focus:ring-primary min-h-[200px] p-4 resize-y transition-all" placeholder="Input message data..."></textarea>
+</label>
+<div class="pt-2">
+<button class="group relative w-full md:w-auto inline-flex items-center justify-center gap-3 bg-primary hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 overflow-hidden" type="button">
+<span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+<span class="material-symbols-outlined">send</span>
+<span>TRANSMIT SECURELY</span>
+</button>
+</div>
+</form>
+</div>
+<div class="lg:col-span-5 flex flex-col gap-8">
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6 md:p-8">
+<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">hub</span>
+                            Direct Uplinks
+                        </h3>
+<div class="flex flex-col gap-5">
+<div class="flex items-start gap-4 group">
+<div class="p-3 rounded-lg bg-[#222249] text-primary group-hover:text-white group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-xs text-text-muted uppercase tracking-wider font-bold">Email Protocol</p>
+<a class="text-white text-lg font-medium hover:text-primary transition-colors" href="mailto:secure@architect.com">secure@architect.com</a>
+</div>
+</div>
+<div class="flex items-start gap-4 group">
+<div class="p-3 rounded-lg bg-[#222249] text-primary group-hover:text-white group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-xs text-text-muted uppercase tracking-wider font-bold">Base of Operations</p>
+<p class="text-white text-lg font-medium">San Francisco, CA (Remote Capable)</p>
+</div>
+</div>
+<div class="flex items-start gap-4 group">
+<div class="p-3 rounded-lg bg-[#222249] text-primary group-hover:text-white group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">radio_button_checked</span>
+</div>
+<div>
+<p class="text-xs text-text-muted uppercase tracking-wider font-bold">Operational Status</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<p class="text-green-400 text-sm font-bold uppercase">Accepting Contracts</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-border-dark flex flex-wrap gap-3">
+<a class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#101022] border border-border-dark hover:border-primary hover:text-primary text-sm font-medium transition-all" href="#">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                LinkedIn
+                            </a>
+<a class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#101022] border border-border-dark hover:border-primary hover:text-primary text-sm font-medium transition-all" href="#">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                                X / Twitter
+                            </a>
+<a class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#101022] border border-border-dark hover:border-primary hover:text-primary text-sm font-medium transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+                                GitHub
+                            </a>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-xl opacity-30 group-hover:opacity-70 blur transition duration-500"></div>
+<div class="relative bg-[#050510] border border-border-dark rounded-xl p-6 overflow-hidden">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold text-text-muted uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">key</span>
+                                    Public PGP Key
+                                </h3>
+<button class="text-xs text-primary hover:text-white flex items-center gap-1 uppercase font-bold tracking-wide transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                    Copy
+                                </button>
+</div>
+<div class="bg-black/50 rounded-lg p-4 font-mono text-xs text-[#9090cb] leading-relaxed break-all h-32 overflow-y-auto custom-scrollbar select-all">
+                                -----BEGIN PGP PUBLIC KEY BLOCK-----<br/>
+                                Version: GnuPG v2.0.22 (GNU/Linux)<br/><br/>
+                                mQENBFKy/sABCAC+8z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/
+                                3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3
+                                z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z
+                                /3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/
+                                3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3
+                                z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z/3z
+                                =rB4n<br/>
+                                -----END PGP PUBLIC KEY BLOCK-----
+                            </div>
+<div class="mt-4 flex items-center justify-between text-[10px] text-gray-600 uppercase font-mono">
+<span>Fingerprint: 8234 98AC 22DF ...</span>
+<span>4096-bit RSA</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-20 border-t border-border-dark pt-8 flex flex-col md:flex-row justify-between items-center text-text-muted text-sm">
+<p>© 2024 Cyber Architect Systems. Secure since 2018.</p>
+<div class="flex gap-6 mt-4 md:mt-0 font-mono text-xs">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> Systems Normal</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">lock</span> 256-bit Encryption</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>
+

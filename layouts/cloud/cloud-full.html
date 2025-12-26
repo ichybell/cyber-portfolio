@@ -1,5 +1,75 @@
-{{ define "main" }}
-{{ $basePath := partial "basepath.html" . }}
+{{ $basePath := partial "basepath.html" . -}}
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cloud Architecture &amp; FinOps Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0d0df2",
+              "background-light": "#f5f5f8",
+              "background-dark": "#101022",
+              "surface-dark": "#181834",
+              "border-dark": "#222249",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+              "mono": ["monospace"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem", 
+              "lg": "0.5rem", 
+              "xl": "0.75rem", 
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .code-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+        .code-scroll::-webkit-scrollbar-track { background: #101022; }
+        .code-scroll::-webkit-scrollbar-thumb { background: #313168; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-x-hidden antialiased">
+<header class="sticky top-0 z-50 w-full border-b border-solid border-border-dark bg-background-dark/80 backdrop-blur-md">
+<div class="px-4 md:px-10 py-3 flex items-center justify-between max-w-7xl mx-auto">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">deployed_code</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight">ARCHITECT_PORTFOLIO</h2>
+</div>
+<div class="hidden xl:flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-6">
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}">Home</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="{{ $basePath }}cloud/">Cloud Architecture &amp; FinOps</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}identity/">Identity &amp; Security Operations</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}research/">Offensive Research &amp; CTF</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}software/">Software Engineering</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}leadership/">Leadership &amp; Advocacy</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm font-medium" href="{{ $basePath }}contact/">Contact Me</a>
+</nav>
+</div>
+<div class="xl:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</div>
+</header>
 <main class="flex flex-col items-center w-full">
 <div class="w-full max-w-5xl px-4 py-12 md:py-20 flex flex-col gap-6">
 <a class="text-primary text-sm font-medium flex items-center gap-1 hover:underline w-fit" href="{{ $basePath }}">
@@ -11,8 +81,8 @@
 <span class="px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase tracking-wider">FinOps Success</span>
 </div>
 <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Scaling with FinOps</span>
-</h1>
+                    Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Scaling with FinOps</span>
+                </h1>
 <p class="text-gray-400 text-lg md:text-xl font-normal leading-relaxed max-w-3xl">
                     A deep dive into migrating from App Runner to ECS Fargate and achieving <span class="text-white font-semibold">56% cost reduction</span> through EKS rightsizing and spot instance orchestration.
                 </p>
@@ -112,7 +182,7 @@ Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-grad
 <div class="md:w-1/2 flex flex-col justify-center gap-6">
 <h3 class="text-3xl font-bold text-white">Containerizing for Control</h3>
 <p class="text-gray-400 leading-relaxed">
-                        The solution involved a full migration to **Amazon ECS on Fargate**. This allowed for custom task definitions and fine-grained auto-scaling policies based on CPU utilization and SQS queue depth.
+                        The solution involved a full migration to Amazon ECS on Fargate. This allowed for custom task definitions and fine-grained auto-scaling policies based on CPU utilization and SQS queue depth.
                     </p>
 <ul class="space-y-4">
 <li class="flex items-start gap-3">
@@ -172,7 +242,7 @@ Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-grad
   <span class="text-gray-500"># Cost optimization: 80% Spot instances</span>
 }</pre>
 </div>
-<div class="px-4 py-2 bg-[#1a1a2e]/50 border-t border-[#313168] flex items-center justify-between">
+<div class="px-4 py-2 bg-[#1a1a2e]/50 border-top border-[#313168] flex items-center justify-between">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
 <span class="text-xs text-green-400 font-mono">Plan: 4 to add, 0 to change, 2 to destroy.</span>
@@ -334,17 +404,17 @@ Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-grad
 <form class="space-y-4 relative z-10">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div class="space-y-1">
-<label class="text-xs font-mono text-gray-500 uppercase" for="name">Name</label>
+<label class="text-xs font-bold text-gray-400 uppercase" for="name">Name</label>
 <input class="w-full bg-background-dark/50 border border-border-dark rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all text-sm" id="name" placeholder="Your Name" type="text"/>
 </div>
 <div class="space-y-1">
-<label class="text-xs font-mono text-gray-500 uppercase" for="email">Email</label>
+<label class="text-xs font-bold text-gray-400 uppercase" for="email">Email</label>
 <input class="w-full bg-background-dark/50 border border-border-dark rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all text-sm" id="email" placeholder="name@company.com" type="email"/>
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div class="space-y-1">
-<label class="text-xs font-mono text-gray-500 uppercase" for="linkedin">LinkedIn Handle</label>
+<label class="text-xs font-bold text-gray-400 uppercase" for="linkedin">LinkedIn Handle</label>
 <div class="relative">
 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 select-none pointer-events-none">
 <span class="text-[10px] font-bold border border-current px-0.5 rounded-sm">in</span>
@@ -353,15 +423,15 @@ Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-grad
 </div>
 </div>
 <div class="space-y-1">
-<label class="text-xs font-mono text-gray-500 uppercase" for="twitter">Twitter Handle</label>
+<label class="text-xs font-bold text-gray-400 uppercase" for="twitter">Twitter Handle</label>
 <div class="relative">
 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 select-none pointer-events-none">@</span>
-<input class="w-full bg-background-dark/50 border border-border-dark rounded-lg pl-8 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all text-sm" id="twitter" placeholder="handle" type="text"/>
+<input class="w-full bg-background-dark/50 border border-border-dark rounded-lg pl-8 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm" id="twitter" placeholder="handle" type="text"/>
 </div>
 </div>
 </div>
 <div class="space-y-1">
-<label class="text-xs font-mono text-gray-500 uppercase" for="message">Message (Optional)</label>
+<label class="text-xs font-bold text-gray-400 uppercase" for="message">Message (Optional)</label>
 <textarea class="w-full bg-background-dark/50 border border-border-dark rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-none" id="message" placeholder="Briefly describe your project needs..." rows="3"></textarea>
 </div>
 <button class="w-full bg-primary hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition-all shadow-[0_0_15px_rgba(13,13,242,0.3)] hover:shadow-[0_0_20px_rgba(13,13,242,0.5)] flex items-center justify-center gap-2 group" type="button">
@@ -369,7 +439,6 @@ Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-grad
 <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 </form>
-</div>
 </div>
 </div>
 <div class="pt-8 border-t border-border-dark flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
@@ -382,4 +451,5 @@ Infrastructure Modernization: <span class="text-transparent bg-clip-text bg-grad
 </div>
 </footer>
 </main>
-{{ end }}
+</body></html>
+
