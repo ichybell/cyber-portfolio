@@ -30,7 +30,7 @@
 
   {{ if .Parent }}
     <div class="mt-12">
-      <a href="{{ partial "internalurl.html" (dict "ctx" $ "url" .Parent.RelPermalink) }}" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-medium">
+      <a href="{{ .Parent.RelPermalink }}" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-medium">
         <span class="material-symbols-outlined text-[18px]">arrow_back</span>
         Back to {{ .Parent.Title }}
       </a>
